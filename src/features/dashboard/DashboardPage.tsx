@@ -82,7 +82,7 @@ export const DashboardPage = (): ReactElement => {
             Logged in as <strong>{user.role}</strong> ({user.email})
           </p>
         </div>
-        <button onClick={logout}>Logout</button>
+        <button className="top-bar-action" onClick={logout}>Logout</button>
       </header>
 
       <section className="card-grid">
@@ -166,7 +166,11 @@ export const DashboardPage = (): ReactElement => {
       <section className="panel">
         <div className="panel-header">
           <h2>Transactions</h2>
-          {canEdit ? <button onClick={() => setFormOpen(true)}>Add Transaction</button> : null}
+          {canEdit ? (
+            <button className="panel-action" onClick={() => setFormOpen(true)}>
+              Add Transaction
+            </button>
+          ) : null}
         </div>
 
         <div className="filter-grid">
@@ -218,16 +222,17 @@ export const DashboardPage = (): ReactElement => {
               <tbody>
                 {records.map((record) => (
                   <tr key={record._id}>
-                    <td>{dayjs(record.date).format("DD MMM YYYY")}</td>
-                    <td>{formatCurrency(record.amount)}</td>
-                    <td>{record.category}</td>
-                    <td>
+                    <td data-label="Date">{dayjs(record.date).format("DD MMM YYYY")}</td>
+                    <td data-label="Amount">{formatCurrency(record.amount)}</td>
+                    <td data-label="Category">{record.category}</td>
+                    <td data-label="Type">
                       <span className={clsx("pill", record.type)}>{record.type}</span>
                     </td>
-                    <td>{record.notes || "-"}</td>
+                    <td data-label="Notes">{record.notes || "-"}</td>
                     {canEdit ? (
-                      <td>
+                      <td data-label="Actions">
                         <button
+                          className="row-action"
                           onClick={() => {
                             setEditingId(record._id);
                             setFormData({

@@ -212,6 +212,13 @@ button:disabled {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0.8rem;
+  gap: 0.7rem;
+}
+
+.top-bar-action,
+.panel-action,
+.row-action {
+  white-space: nowrap;
 }
 
 .filter-grid {
@@ -223,6 +230,7 @@ button:disabled {
 
 .table-wrap {
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 table {
@@ -293,6 +301,10 @@ td {
 }
 
 @media (max-width: 980px) {
+  .dashboard-shell {
+    padding: 0.9rem;
+  }
+
   .card-grid,
   .charts-grid,
   .insight-grid {
@@ -305,12 +317,99 @@ td {
 }
 
 @media (max-width: 640px) {
+  .auth-shell {
+    padding: 1rem;
+  }
+
+  .auth-card {
+    padding: 1.2rem;
+    border-radius: 16px;
+  }
+
+  .dashboard-shell {
+    padding: 0.7rem;
+    gap: 0.8rem;
+  }
+
   .top-bar {
     flex-direction: column;
     align-items: flex-start;
+    padding: 0.9rem;
+  }
+
+  .top-bar h1 {
+    font-size: 1.45rem;
+  }
+
+  .metric-card p {
+    font-size: 1.3rem;
+  }
+
+  .panel {
+    padding: 0.8rem;
+  }
+
+  .panel-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .top-bar-action,
+  .panel-action,
+  .row-action {
+    width: 100%;
   }
 
   .filter-grid {
     grid-template-columns: 1fr;
+  }
+
+  table {
+    min-width: 100%;
+  }
+
+  .table-wrap thead {
+    display: none;
+  }
+
+  .table-wrap tbody,
+  .table-wrap tr,
+  .table-wrap td {
+    display: block;
+    width: 100%;
+  }
+
+  .table-wrap tr {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.45rem 0.55rem;
+    margin-bottom: 0.55rem;
+    background: #fff;
+  }
+
+  .table-wrap td {
+    border-bottom: 0;
+    padding: 0.45rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    text-align: right;
+  }
+
+  .table-wrap td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--muted);
+    text-align: left;
+  }
+
+  .insight-grid > div {
+    padding: 0.65rem;
+  }
+
+  .modal {
+    width: min(520px, 95%);
+    padding: 0.8rem;
   }
 }
